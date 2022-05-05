@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="JavaProp">
+    <output-path>$PROJECT_DIR$/out/artifacts/JavaProp</output-path>
+    <root id="archive" name="JavaDatProp.jar">
+      <element id="module-output" name="JavaProp" />
+    </root>
+  </artifact>
+</component>

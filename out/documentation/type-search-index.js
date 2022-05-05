@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes","u":"allclasses-index.html"},{"p":"joaoduarte.samples.javadatprop","l":"Main"},{"p":"joaoduarte.samples.javadatprop","l":"PropertiesFilesManager"}];updateSearchResults();

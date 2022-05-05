@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/JavaDatProp.iml" filepath="$PROJECT_DIR$/JavaDatProp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/JavaProp.iml" filepath="$PROJECT_DIR$/JavaProp.iml" />
     </modules>
   </component>
 </project>

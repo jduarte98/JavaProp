@@ -1,89 +1,32 @@
 package joaoduarte.samples.javadatprop;
 
-import java.sql.SQLOutput;
-import java.util.Properties;
 import java.util.Scanner;
 
+/**
+ * @author João Duarte (LinkedIn: www.linkedin.com/in/joão-duarte-453bb9199 | GitHub: https://github.com/jduarte98)
+ */
 public class Main {
     private static final Scanner keyboard = new Scanner(System.in);
     private static final PropertiesFilesManager propertiesManager = new PropertiesFilesManager();
-    private static final DatFilesManager datManager = new DatFilesManager();
     private static String lastPropFile = null;
 
+    /**
+     * Main Class
+     * @param args Not Used
+     */
     public static void main(String[] args) {
-	    appBanner();
-        System.out.println();
+        System.out.println("### JavaProp - <<.properties>> File Manager ###\n");
         while (true){
-            mainMenu();
+            propMenu();
         }
     }
 
-    private static void appBanner(){
-        System.out.println("### Java DatProp - File Manager ###");
-    }
-
-    private static void mainMenu(){
-        try{
-            System.out.println(" Main Menu:\n     1 - DAT Files Management\n     2 - PROPERTIES Files Management Text\n     3 - Exit");
-            switch(Integer.parseInt(readString(keyboard,"Option: "))){
-                case 1:{
-                    datMenu();
-                    break;
-                }
-                case 2:{
-                    propMenu();
-                    break;
-                }
-                case 3:{
-                    System.exit(0);
-                    break;
-                }
-                default:{
-                    System.out.println(" !! Invalid Option, Try Again!");
-                    mainMenu();
-                }
-            }
-        }catch (NumberFormatException nfe){
-            System.out.println("\n   !!! This field ONLY accepts NUMBERS! Please try again !!!\n");
-            mainMenu();
-        }catch (Exception e){
-            System.out.println("\n   !!! An ERROR OCURRED, please try again !!!\n");
-            mainMenu();
-        }
-    }
-
-    private static void datMenu(){
-        try{
-            System.out.println("  Main Menu > DAT FILES Menu:\n          1 - Create DAT File\n          2 - Read DAT File\n          3 - Back to Main Menu");
-            switch(Integer.parseInt(readString(keyboard," Option: "))){
-                case 1:{
-                    datMenu();
-                    break;
-                }
-                case 2:{
-                    propMenu();
-                    break;
-                }
-                case 3:{
-                    mainMenu();
-                }
-                default:{
-                    System.out.println("  !! Invalid Option, Try Again!");
-                    datMenu();
-                }
-            }
-        }catch (NumberFormatException nfe){
-            System.out.println("\n      !!! This field ONLY accepts NUMBERS! Please try again !!!\n");
-            datMenu();
-        }catch (Exception e){
-            System.out.println("\n      !!! An ERROR OCURRED, please try again !!!\n");
-            datMenu();
-        }
-    }
-
+    /**
+     * Prop Menu - responsible for the logic of creating a properties file and launching the functions responsible for the file Writing and Reading.
+     */
     private static void propMenu(){
         try{
-            System.out.println("  Main Menu > PROPERTIES FILES Menu:\n          1 - Create PROPERTIES File\n          2 - Write on PROPERTIES File\n          3 - Read PROPERTIES File1\n          4 - Back to Main Menu");
+            System.out.println("  Main Menu:\n          1 - Create PROPERTIES File\n          2 - Write on PROPERTIES File\n          3 - Read PROPERTIES File1\n          4 - Exit");
             switch(Integer.parseInt(readString(keyboard," Option: "))){
                 case 1:{
                     String fname = readString(keyboard,"   File Name? "), fpath = readString(keyboard, "   File Saving Path (without final /) ? ");
@@ -107,7 +50,7 @@ public class Main {
                     break;
                 }
                 case 4:{
-                    mainMenu();
+                    System.exit(0);
                 }
                 default:{
                     System.out.println("  !! Invalid Option, Try Again!");
@@ -123,6 +66,9 @@ public class Main {
         }
     }
 
+    /**
+     * Write on previous created (with option 1) or new properties file
+     */
     private static void writeOnPropFile(){
         boolean continuePropAdding = true;
         if(lastPropFile != null){
@@ -133,6 +79,9 @@ public class Main {
                         continuePropAdding = false;
                     }
                 }
+            }else{
+                lastPropFile = null;
+                writeOnPropFile();
             }
         }else{
             boolean continueAdding = true;
@@ -146,11 +95,23 @@ public class Main {
         }
     }
 
+    /**
+     * Read the full contents of a properties file
+     */
     private static void readPRPFile(){
-        propertiesManager.printAll(readString(keyboard, "  Properties File Path? "));
+        try{
+            propertiesManager.printAll(readString(keyboard, "  Properties File Path? "));
+        }catch (Exception e){
+            System.out.println("      !!! An ERROR OCURRED while reading the file, please try again !!!");
+        }
     }
 
-
+    /**
+     * Read User Input
+     * @param aKeyboard Scanner Object
+     * @param aMsg Prompt message
+     * @return String
+     */
     public static String readString(Scanner aKeyboard, String aMsg) {
         System.out.print(" " + aMsg);
         return aKeyboard.nextLine();
